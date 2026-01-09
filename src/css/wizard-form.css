@@ -1,0 +1,450 @@
+/* ============================================
+   Ball Transfer Systems - Multi-Step Form Wizard
+   ============================================ */
+
+/* ----------------------------------------
+   Wizard Container
+   ---------------------------------------- */
+.form-wizard {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-premium-lg);
+  overflow: hidden;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ----------------------------------------
+   Progress Steps
+   ---------------------------------------- */
+.wizard-progress {
+  display: flex;
+  padding: var(--space-6);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  position: relative;
+}
+
+.wizard-progress::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 106, 0, 0.5), transparent);
+}
+
+.wizard-step-indicator {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.wizard-step-indicator::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.wizard-step-indicator:last-child::before {
+  display: none;
+}
+
+.wizard-step-indicator.completed::before {
+  background: var(--color-accent);
+}
+
+.wizard-step-number {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.wizard-step-indicator.active .wizard-step-number {
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(232, 106, 0, 0.3);
+}
+
+.wizard-step-indicator.completed .wizard-step-number {
+  background: var(--color-accent);
+}
+
+.wizard-step-indicator.completed .wizard-step-number::after {
+  content: '';
+  width: 12px;
+  height: 6px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg);
+  position: absolute;
+}
+
+.wizard-step-indicator.completed .wizard-step-number span {
+  display: none;
+}
+
+.wizard-step-label {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.wizard-step-indicator.active .wizard-step-label {
+  color: white;
+  font-weight: 600;
+}
+
+/* ----------------------------------------
+   Step Content
+   ---------------------------------------- */
+.wizard-steps {
+  position: relative;
+  overflow: hidden;
+}
+
+.wizard-step {
+  padding: var(--space-8);
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.wizard-step.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.wizard-step__title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.wizard-step__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+/* ----------------------------------------
+   Form Fields
+   ---------------------------------------- */
+.wizard-field-group {
+  margin-bottom: var(--space-5);
+}
+
+.wizard-field-label {
+  display: block;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.wizard-field-label .required {
+  color: #dc2626;
+  margin-left: 2px;
+}
+
+.wizard-field-input,
+.wizard-field-select,
+.wizard-field-textarea {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  transition: all 0.2s ease;
+}
+
+.wizard-field-input:focus,
+.wizard-field-select:focus,
+.wizard-field-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(19, 58, 99, 0.1);
+}
+
+.wizard-field-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.wizard-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+/* ----------------------------------------
+   Radio/Checkbox Options
+   ---------------------------------------- */
+.wizard-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-3);
+}
+
+.wizard-option {
+  position: relative;
+}
+
+.wizard-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wizard-option-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wizard-option-label:hover {
+  border-color: var(--color-primary);
+  background: var(--color-gray-50);
+}
+
+.wizard-option input:checked + .wizard-option-label {
+  border-color: var(--color-accent);
+  background: rgba(232, 106, 0, 0.05);
+}
+
+.wizard-option-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--color-gray-100);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wizard-option input:checked + .wizard-option-label .wizard-option-icon {
+  background: var(--color-accent);
+  color: white;
+}
+
+.wizard-option-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.wizard-option-text {
+  flex: 1;
+}
+
+.wizard-option-title {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+.wizard-option-desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* ----------------------------------------
+   Navigation
+   ---------------------------------------- */
+.wizard-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-gray-50);
+}
+
+.wizard-btn {
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.wizard-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.wizard-btn--prev {
+  background: white;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.wizard-btn--prev:hover {
+  background: var(--color-gray-100);
+}
+
+.wizard-btn--next {
+  background: var(--color-primary);
+  border: none;
+  color: white;
+}
+
+.wizard-btn--next:hover {
+  background: var(--color-primary-dark);
+}
+
+.wizard-btn--submit {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  border: none;
+  color: white;
+}
+
+.wizard-btn--submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232, 106, 0, 0.3);
+}
+
+.wizard-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ----------------------------------------
+   Summary Step
+   ---------------------------------------- */
+.wizard-summary {
+  background: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.wizard-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wizard-summary-row:last-child {
+  border-bottom: none;
+}
+
+.wizard-summary-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.wizard-summary-value {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ----------------------------------------
+   Success State
+   ---------------------------------------- */
+.wizard-success {
+  text-align: center;
+  padding: var(--space-12);
+}
+
+.wizard-success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-6);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+.wizard-success-icon svg {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.wizard-success-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.wizard-success-text {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+/* ----------------------------------------
+   Mobile
+   ---------------------------------------- */
+@media (max-width: 640px) {
+  .wizard-progress {
+    padding: var(--space-4);
+  }
+
+  .wizard-step-label {
+    display: none;
+  }
+
+  .wizard-step {
+    padding: var(--space-6);
+  }
+
+  .wizard-field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .wizard-options {
+    grid-template-columns: 1fr;
+  }
+
+  .wizard-nav {
+    padding: var(--space-4);
+  }
+
+  .wizard-btn {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-sm);
+  }
+}

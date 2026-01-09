@@ -1,0 +1,394 @@
+/* ============================================
+   Ball Transfer Systems - Search with Autocomplete
+   ============================================ */
+
+/* ----------------------------------------
+   Search Toggle (Header)
+   ---------------------------------------- */
+.search-toggle {
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  padding: var(--space-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.search-toggle:hover {
+  background: var(--color-gray-100);
+  color: var(--color-primary);
+}
+
+.search-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ----------------------------------------
+   Search Modal Overlay
+   ---------------------------------------- */
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.search-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ----------------------------------------
+   Search Modal Container
+   ---------------------------------------- */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1101;
+  transform: translateY(-100%);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.search-modal.open {
+  transform: translateY(0);
+}
+
+.search-modal__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-6);
+}
+
+/* ----------------------------------------
+   Search Form
+   ---------------------------------------- */
+.search-form {
+  position: relative;
+}
+
+.search-form__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-form__icon {
+  position: absolute;
+  left: var(--space-4);
+  width: 24px;
+  height: 24px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.search-form__input {
+  width: 100%;
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-12);
+  font-size: var(--font-size-lg);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.search-form__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(19, 58, 99, 0.1);
+}
+
+.search-form__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.search-form__close {
+  position: absolute;
+  right: var(--space-3);
+  background: var(--color-gray-100);
+  border: none;
+  color: var(--color-text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.search-form__close:hover {
+  background: var(--color-gray-200);
+  color: var(--color-text);
+}
+
+.search-form__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ----------------------------------------
+   Search Filters
+   ---------------------------------------- */
+.search-filters {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.search-filter {
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-gray-100);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-filter:hover {
+  background: var(--color-gray-200);
+  color: var(--color-text);
+}
+
+.search-filter.active {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* ----------------------------------------
+   Search Results
+   ---------------------------------------- */
+.search-results {
+  margin-top: var(--space-6);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.search-results__heading {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.search-results__empty {
+  text-align: center;
+  padding: var(--space-8);
+  color: var(--color-text-muted);
+}
+
+.search-results__empty-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-4);
+  opacity: 0.3;
+}
+
+/* ----------------------------------------
+   Search Result Item
+   ---------------------------------------- */
+.search-result {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.search-result:hover,
+.search-result.highlighted {
+  background: var(--color-gray-50);
+}
+
+.search-result__image {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background: var(--color-gray-100);
+}
+
+.search-result__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-result__name {
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.search-result__name mark {
+  background: rgba(232, 106, 0, 0.2);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.search-result__meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.search-result__type {
+  background: var(--color-gray-100);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+.search-result__arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-muted);
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: all 0.2s ease;
+}
+
+.search-result:hover .search-result__arrow,
+.search-result.highlighted .search-result__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ----------------------------------------
+   Quick Links
+   ---------------------------------------- */
+.search-quick-links {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.search-quick-links__heading {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.search-quick-links__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.search-quick-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.search-quick-link:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.search-quick-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ----------------------------------------
+   Keyboard Hints
+   ---------------------------------------- */
+.search-hints {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-6);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.search-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.search-hint kbd {
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  font-family: inherit;
+  font-size: var(--font-size-xs);
+}
+
+/* ----------------------------------------
+   Mobile Adjustments
+   ---------------------------------------- */
+@media (max-width: 768px) {
+  .search-modal__inner {
+    padding: var(--space-4);
+  }
+
+  .search-form__input {
+    font-size: var(--font-size-base);
+    padding: var(--space-3) var(--space-3) var(--space-3) var(--space-10);
+  }
+
+  .search-form__icon {
+    width: 20px;
+    height: 20px;
+    left: var(--space-3);
+  }
+
+  .search-hints {
+    display: none;
+  }
+
+  .search-results {
+    max-height: 50vh;
+  }
+}
+
+/* ----------------------------------------
+   Reduced Motion
+   ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .search-overlay,
+  .search-modal,
+  .search-result,
+  .search-result__arrow {
+    transition: none;
+  }
+}

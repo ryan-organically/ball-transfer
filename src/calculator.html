@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate the right ball transfer unit for your application based on load requirements.">
+  <title>Load Capacity Calculator | Ball Transfer Systems</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logos/favicon-32x32.png">
+  <style>
+    .calculator { padding: var(--space-12) 0; }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+    .calc-form { background: var(--color-gray-50); padding: var(--space-8); border-radius: var(--radius-lg); }
+    .calc-results { background: var(--color-primary); color: white; padding: var(--space-8); border-radius: var(--radius-lg); }
+    .calc-results h3 { color: white; margin-bottom: var(--space-6); }
+    .input-group { margin-bottom: var(--space-6); }
+    .input-group label { display: block; margin-bottom: var(--space-2); font-weight: 600; }
+    .input-row { display: flex; gap: var(--space-4); }
+    .input-row > * { flex: 1; }
+    .unit-toggle { display: flex; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); }
+    .unit-toggle button { flex: 1; padding: var(--space-2) var(--space-4); border: none; background: white; cursor: pointer; }
+    .unit-toggle button.active { background: var(--color-primary); color: white; }
+    .result-card { background: rgba(255,255,255,0.1); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-4); }
+    .result-value { font-size: var(--font-size-3xl); font-weight: 700; color: var(--color-accent); }
+    .result-label { font-size: var(--font-size-sm); opacity: 0.8; }
+    .recommendations { margin-top: var(--space-6); }
+    .rec-item { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); background: rgba(255,255,255,0.1); border-radius: var(--radius-md); margin-bottom: var(--space-3); }
+    .rec-item img { width: 60px; height: 60px; object-fit: cover; border-radius: var(--radius-sm); }
+    .rec-item-info { flex: 1; }
+    .rec-item-name { font-weight: 600; }
+    .rec-item-capacity { font-size: var(--font-size-sm); opacity: 0.8; }
+    .rec-item .btn { padding: var(--space-2) var(--space-4); font-size: var(--font-size-sm); }
+    .safety-note { background: rgba(232,106,0,0.2); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6); font-size: var(--font-size-sm); }
+    @media (max-width: 768px) { .calc-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-logo"><img src="assets/images/logos/ball-transfer-systems-logo.png" alt="Ball Transfer Systems, LLC" width="200"></a>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="main-nav">
+        <div class="nav-dropdown">
+          <span class="nav-link nav-dropdown__toggle">Products</span>
+          <div class="nav-dropdown__menu">
+            <a href="stud-mount-ball-transfer-units.html" class="nav-dropdown__link">Stud Mount</a>
+            <a href="flange-mount-ball-transfer-units.html" class="nav-dropdown__link">Flange Mount</a>
+            <a href="disk-mount-ball-transfer-units.html" class="nav-dropdown__link">Disk Mount</a>
+            <a href="round-mount-ball-transfer-units.html" class="nav-dropdown__link">Round Mount</a>
+          </div>
+        </div>
+        <a href="compare.html" class="nav-link">Compare</a>
+        <a href="calculator.html" class="nav-link nav-link--active">Calculator</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="request-a-quote.html" class="nav-link nav-link--cta">Request a Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header"><div class="container"><h1 class="page-header__title">Load Capacity Calculator</h1></div></section>
+
+  <main id="main">
+    <section class="calculator">
+      <div class="container">
+        <div class="calc-grid">
+          <div class="calc-form fade-in-left">
+            <h3>Enter Your Requirements</h3>
+
+            <div class="input-group">
+              <label>Total Load Weight</label>
+              <div class="input-row">
+                <input type="number" id="total-load" class="form-input" placeholder="Enter weight" value="500">
+                <div class="unit-toggle">
+                  <button class="active" data-unit="lbs">lbs</button>
+                  <button data-unit="kg">kg</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label>Number of Ball Transfers Supporting Load</label>
+              <input type="number" id="num-units" class="form-input" placeholder="e.g., 4" value="4" min="1">
+              <small style="color: var(--color-text-muted);">Minimum 3 points for stability</small>
+            </div>
+
+            <div class="input-group">
+              <label>Safety Factor</label>
+              <select id="safety-factor" class="form-select">
+                <option value="1.5">1.5x (Light duty, controlled environment)</option>
+                <option value="2" selected>2x (Standard industrial)</option>
+                <option value="3">3x (Heavy duty, high impact)</option>
+                <option value="4">4x (Critical applications)</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label>Environment</label>
+              <select id="environment" class="form-select">
+                <option value="standard">Standard (Indoor, dry)</option>
+                <option value="washdown">Washdown / Wet</option>
+                <option value="food">Food Processing</option>
+                <option value="corrosive">Corrosive / Chemical</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label>Mount Type Preference</label>
+              <select id="mount-type" class="form-select">
+                <option value="any">Any</option>
+                <option value="stud">Stud Mount</option>
+                <option value="flange">Flange Mount</option>
+                <option value="disk">Disk Mount</option>
+              </select>
+            </div>
+
+            <button id="calculate-btn" class="btn btn--accent btn--lg w-full">Calculate Requirements</button>
+          </div>
+
+          <div class="calc-results fade-in-right">
+            <h3>Recommended Specifications</h3>
+
+            <div class="result-card">
+              <div class="result-label">Load Per Unit Required</div>
+              <div class="result-value" id="load-per-unit">125 lbs</div>
+            </div>
+
+            <div class="result-card">
+              <div class="result-label">With Safety Factor</div>
+              <div class="result-value" id="with-safety">250 lbs</div>
+            </div>
+
+            <div class="result-card">
+              <div class="result-label">Recommended Material</div>
+              <div class="result-value" id="rec-material" style="font-size: var(--font-size-xl);">Carbon Steel</div>
+            </div>
+
+            <div class="recommendations">
+              <h4 style="margin-bottom: var(--space-4);">Recommended Products</h4>
+              <div id="rec-products">
+                <div class="rec-item">
+                  <img src="assets/images/products/stud-mount-1-1.jpg" alt="1-1/2 SMC">
+                  <div class="rec-item-info">
+                    <div class="rec-item-name">1-1/2 SMC</div>
+                    <div class="rec-item-capacity">250 lbs capacity</div>
+                  </div>
+                  <a href="stud-mount-ball-transfer-units.html" class="btn btn--white">View</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="safety-note">
+              <strong>Note:</strong> These are general recommendations. For critical applications, please contact our engineering team for a detailed analysis.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/images/logos/ball-transfer-systems-logo.png" alt="Ball Transfer Systems" style="height: 50px; filter: brightness(0) invert(1);">
+          <div class="footer-contact"><strong>Ball Transfer Systems, LLC</strong><br>724-736-0600</div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>Copyright &copy; 2025 Ball Transfer Systems, LLC.</p></div>
+    </div>
+  </footer>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <script src="js/main.js"></script>
+  <script>
+    const products = [
+      { name: 'SMC 1/4', capacity: 75, material: 'carbon', type: 'stud', img: 'stud-mount-1-1.jpg', link: 'stud-mount-ball-transfer-units.html' },
+      { name: 'SMS 1/4', capacity: 125, material: 'stainless', type: 'stud', img: 'stud-mount-1-1.jpg', link: 'stud-mount-ball-transfer-units.html' },
+      { name: '1-1/2 SMC', capacity: 250, material: 'carbon', type: 'stud', img: 'stud-mount-1-1.jpg', link: 'stud-mount-ball-transfer-units.html' },
+      { name: '1-1/2 SMS', capacity: 350, material: 'stainless', type: 'stud', img: 'stud-mount-1-1.jpg', link: 'stud-mount-ball-transfer-units.html' },
+      { name: 'FMC', capacity: 75, material: 'carbon', type: 'flange', img: 'FMC-flange.jpg', link: 'flange-mount-ball-transfer-units.html' },
+      { name: 'FMS', capacity: 125, material: 'stainless', type: 'flange', img: 'FMC-flange.jpg', link: 'flange-mount-ball-transfer-units.html' },
+      { name: 'DMC', capacity: 75, material: 'carbon', type: 'disk', img: 'DMC-disk-mount.jpg', link: 'disk-mount-ball-transfer-units.html' },
+      { name: 'DMS', capacity: 125, material: 'stainless', type: 'disk', img: 'DMC-disk-mount.jpg', link: 'disk-mount-ball-transfer-units.html' },
+    ];
+
+    const unitToggle = document.querySelectorAll('.unit-toggle button');
+    let currentUnit = 'lbs';
+
+    unitToggle.forEach(btn => {
+      btn.addEventListener('click', () => {
+        unitToggle.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentUnit = btn.dataset.unit;
+      });
+    });
+
+    document.getElementById('calculate-btn').addEventListener('click', calculate);
+
+    function calculate() {
+      let totalLoad = parseFloat(document.getElementById('total-load').value) || 0;
+      if (currentUnit === 'kg') totalLoad *= 2.205;
+
+      const numUnits = parseInt(document.getElementById('num-units').value) || 4;
+      const safetyFactor = parseFloat(document.getElementById('safety-factor').value);
+      const environment = document.getElementById('environment').value;
+      const mountType = document.getElementById('mount-type').value;
+
+      const loadPerUnit = totalLoad / numUnits;
+      const withSafety = loadPerUnit * safetyFactor;
+
+      document.getElementById('load-per-unit').textContent = Math.round(loadPerUnit) + ' lbs';
+      document.getElementById('with-safety').textContent = Math.round(withSafety) + ' lbs';
+
+      let recMaterial = 'Carbon Steel';
+      if (['washdown', 'food', 'corrosive'].includes(environment)) {
+        recMaterial = 'Stainless Steel';
+      }
+      document.getElementById('rec-material').textContent = recMaterial;
+
+      const materialFilter = recMaterial === 'Stainless Steel' ? 'stainless' : 'carbon';
+      let filtered = products.filter(p => p.capacity >= withSafety && p.material === materialFilter);
+      if (mountType !== 'any') filtered = filtered.filter(p => p.type === mountType);
+      filtered.sort((a, b) => a.capacity - b.capacity);
+      if (filtered.length === 0) filtered = products.filter(p => p.capacity >= withSafety).sort((a, b) => a.capacity - b.capacity);
+      if (filtered.length === 0) filtered = [products[products.length - 1]];
+
+      document.getElementById('rec-products').innerHTML = filtered.slice(0, 3).map(p => `
+        <div class="rec-item">
+          <img src="assets/images/products/${p.img}" alt="${p.name}">
+          <div class="rec-item-info">
+            <div class="rec-item-name">${p.name}</div>
+            <div class="rec-item-capacity">${p.capacity} lbs capacity</div>
+          </div>
+          <a href="${p.link}" class="btn btn--white">View</a>
+        </div>
+      `).join('');
+    }
+
+    calculate();
+  </script>
+</body>
+</html>

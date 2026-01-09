@@ -1,0 +1,282 @@
+/* ============================================
+   Ball Transfer Systems - Testimonials Carousel
+   ============================================ */
+
+/* ----------------------------------------
+   Section Container
+   ---------------------------------------- */
+.testimonials-section {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  padding: var(--space-16) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.testimonials-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 106, 0, 0.5), transparent);
+}
+
+/* ----------------------------------------
+   Header
+   ---------------------------------------- */
+.testimonials__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.testimonials__overline {
+  color: var(--color-accent);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-2);
+}
+
+.testimonials__title {
+  color: white;
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ----------------------------------------
+   Carousel Container
+   ---------------------------------------- */
+.testimonials-carousel {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.testimonials-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.testimonials-viewport {
+  overflow: hidden;
+}
+
+/* ----------------------------------------
+   Testimonial Card
+   ---------------------------------------- */
+.testimonial {
+  flex: 0 0 100%;
+  padding: 0 var(--space-4);
+  box-sizing: border-box;
+}
+
+.testimonial__card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.testimonial__quote-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--color-accent);
+  margin-bottom: var(--space-6);
+  opacity: 0.5;
+}
+
+.testimonial__text {
+  font-size: var(--font-size-xl);
+  line-height: 1.6;
+  margin-bottom: var(--space-8);
+  font-style: italic;
+  opacity: 0.95;
+}
+
+.testimonial__author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.testimonial__avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: white;
+}
+
+.testimonial__info {
+  text-align: left;
+}
+
+.testimonial__name {
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-1);
+}
+
+.testimonial__role {
+  font-size: var(--font-size-sm);
+  opacity: 0.7;
+}
+
+.testimonial__company {
+  font-size: var(--font-size-sm);
+  color: var(--color-accent);
+}
+
+/* ----------------------------------------
+   Navigation
+   ---------------------------------------- */
+.testimonials__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.testimonials__btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.testimonials__btn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.testimonials__btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.testimonials__btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ----------------------------------------
+   Dots
+   ---------------------------------------- */
+.testimonials__dots {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.testimonials__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.testimonials__dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.testimonials__dot.active {
+  background: var(--color-accent);
+  width: 30px;
+}
+
+/* ----------------------------------------
+   Stats Row
+   ---------------------------------------- */
+.testimonials__stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-12);
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.testimonials__stat {
+  text-align: center;
+}
+
+.testimonials__stat-value {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.testimonials__stat-label {
+  font-size: var(--font-size-sm);
+  opacity: 0.7;
+  margin-top: var(--space-2);
+}
+
+/* ----------------------------------------
+   Mobile
+   ---------------------------------------- */
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: var(--space-12) 0;
+  }
+
+  .testimonial__text {
+    font-size: var(--font-size-lg);
+  }
+
+  .testimonial__card {
+    padding: var(--space-6);
+  }
+
+  .testimonials__stats {
+    flex-wrap: wrap;
+    gap: var(--space-6);
+  }
+
+  .testimonials__stat {
+    flex: 0 0 calc(50% - var(--space-3));
+  }
+}
+
+/* ----------------------------------------
+   Reduced Motion
+   ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-track {
+    transition: none;
+  }
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse the complete Ball Transfer Systems product catalog with interactive sorting and filtering.">
+  <title>Product Catalog | Ball Transfer Systems</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/spec-table.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logos/favicon-32x32.png">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-logo"><img src="assets/images/logos/ball-transfer-systems-logo.png" alt="Ball Transfer Systems, LLC" width="200"></a>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="main-nav">
+        <div class="nav-dropdown">
+          <span class="nav-link nav-dropdown__toggle">Products</span>
+          <div class="nav-dropdown__menu">
+            <a href="stud-mount-ball-transfer-units.html" class="nav-dropdown__link">Stud Mount</a>
+            <a href="flange-mount-ball-transfer-units.html" class="nav-dropdown__link">Flange Mount</a>
+            <a href="disk-mount-ball-transfer-units.html" class="nav-dropdown__link">Disk Mount</a>
+            <a href="round-mount-ball-transfer-units.html" class="nav-dropdown__link">Round Mount</a>
+          </div>
+        </div>
+        <a href="compare.html" class="nav-link">Compare</a>
+        <a href="calculator.html" class="nav-link">Calculator</a>
+        <a href="catalog.html" class="nav-link nav-link--active">Catalog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="request-a-quote.html" class="nav-link nav-link--cta">Request a Quote</a>
+      </nav>
+    </div>
+  </header>
+  <section class="page-header"><div class="container"><h1 class="page-header__title">Product Catalog</h1></div></section>
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <div class="text-center mb-8 fade-in-up">
+          <p class="lead">Browse our complete product line with interactive sorting and filtering</p>
+        </div>
+
+        <div class="spec-table-container fade-in-up">
+          <div class="spec-table__controls">
+            <div class="spec-table__search">
+              <svg class="spec-table__search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+              <input type="text" class="spec-table__search-input" id="catalog-search" placeholder="Search by part number or type...">
+            </div>
+            <div class="spec-table__filters">
+              <button class="spec-table__filter active" data-filter="all">All Products</button>
+              <button class="spec-table__filter" data-filter="stud">Stud Mount</button>
+              <button class="spec-table__filter" data-filter="flange">Flange Mount</button>
+              <button class="spec-table__filter" data-filter="disk">Disk Mount</button>
+              <button class="spec-table__filter" data-filter="spring">Spring Loaded</button>
+              <button class="spec-table__filter" data-filter="machined">Machined</button>
+            </div>
+          </div>
+          <div class="spec-table__wrapper">
+            <table class="spec-table" id="catalog-table">
+              <thead>
+                <tr>
+                  <th data-sort="name">Part # <svg class="sort-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></th>
+                  <th data-sort="type">Type <svg class="sort-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></th>
+                  <th data-sort="capacity">Capacity <svg class="sort-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></th>
+                  <th data-sort="material">Ball Material <svg class="sort-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></th>
+                  <th data-sort="housing">Housing <svg class="sort-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="catalog-body"></tbody>
+            </table>
+          </div>
+          <div class="spec-table__pagination">
+            <div class="spec-table__page-info" id="page-info">Showing 1-10 of 20 products</div>
+            <div class="spec-table__page-controls">
+              <button class="spec-table__page-btn" id="prev-page" aria-label="Previous page">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+              </button>
+              <button class="spec-table__page-btn" id="next-page" aria-label="Next page">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-8">
+          <a href="request-a-quote.html" class="btn btn--accent btn--lg">Request a Quote</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/images/logos/ball-transfer-systems-logo.png" alt="Ball Transfer Systems" style="height: 50px; filter: brightness(0) invert(1);">
+          <div class="footer-contact"><strong>Ball Transfer Systems, LLC</strong><br>724-736-0600</div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>Copyright &copy; 2025 Ball Transfer Systems, LLC.</p></div>
+    </div>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <script src="js/main.js"></script>
+  <script>
+    const products = [
+      { name: 'SMC 1/4', type: 'Stud Mount', category: 'stud', capacity: 75, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'stud-mount-ball-transfer-units.html' },
+      { name: 'SMS 1/4', type: 'Stud Mount', category: 'stud', capacity: 125, material: 'Stainless Steel', housing: 'Stainless Steel', link: 'stud-mount-ball-transfer-units.html' },
+      { name: 'NSMC 1/4', type: 'Stud Mount', category: 'stud', capacity: 75, material: 'Nylon', housing: 'Carbon Steel (zinc)', link: 'stud-mount-ball-transfer-units.html' },
+      { name: '1-1/2 SMC', type: 'Stud Mount', category: 'stud', capacity: 250, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'stud-mount-ball-transfer-units.html' },
+      { name: '1-1/2 SMS', type: 'Stud Mount', category: 'stud', capacity: 350, material: 'Stainless Steel', housing: 'Stainless Steel', link: 'stud-mount-ball-transfer-units.html' },
+      { name: 'EHSMC', type: 'Stud Mount', category: 'stud', capacity: 50, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'stud-mount-ball-transfer-units.html' },
+      { name: 'LDSMC', type: 'Stud Mount', category: 'stud', capacity: 65, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'stud-mount-ball-transfer-units.html' },
+      { name: 'FMC', type: 'Flange Mount', category: 'flange', capacity: 75, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'flange-mount-ball-transfer-units.html' },
+      { name: 'FMS', type: 'Flange Mount', category: 'flange', capacity: 125, material: 'Stainless Steel', housing: 'Stainless Steel', link: 'flange-mount-ball-transfer-units.html' },
+      { name: 'DMC', type: 'Disk Mount', category: 'disk', capacity: 75, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'disk-mount-ball-transfer-units.html' },
+      { name: 'DMS', type: 'Disk Mount', category: 'disk', capacity: 125, material: 'Stainless Steel', housing: 'Stainless Steel', link: 'disk-mount-ball-transfer-units.html' },
+      { name: 'RMC', type: 'Round Mount', category: 'round', capacity: 75, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'round-mount-ball-transfer-units.html' },
+      { name: 'MSMC', type: 'Machined Stud', category: 'machined', capacity: 150, material: 'Carbon Steel', housing: 'Carbon Steel', link: 'machined-stud-mount-ball-transfer-units.html' },
+      { name: 'MSMS', type: 'Machined Stud', category: 'machined', capacity: 250, material: 'Stainless Steel', housing: 'Stainless Steel', link: 'machined-stud-mount-ball-transfer-units.html' },
+      { name: 'MPC', type: 'Machined Press', category: 'machined', capacity: 150, material: 'Carbon Steel', housing: 'Carbon Steel', link: 'machined-press-ball-transfer-units.html' },
+      { name: 'PMC', type: 'Pipe Mount', category: 'pipe', capacity: 250, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'pipe-mount-ball-transfer-units.html' },
+      { name: 'SLC', type: 'Spring Loaded', category: 'spring', capacity: 50, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'spring-loaded-ball-transfer-units.html' },
+      { name: 'FSLC', type: 'Spring Loaded Flange', category: 'spring', capacity: 50, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'spring-loaded-ball-transfer-units.html' },
+      { name: 'BD-DMC', type: 'Bolt Down Disk', category: 'disk', capacity: 75, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'bolt-down-disk-mount-units.html' },
+      { name: 'CFMC', type: 'Countersunk Flange', category: 'flange', capacity: 75, material: 'Carbon Steel', housing: 'Carbon Steel (zinc)', link: 'countersunk-flange-mount-ball-transfer-units.html' },
+    ];
+
+    let filteredProducts = [...products];
+    let currentPage = 0;
+    let sortColumn = null;
+    let sortDirection = 'asc';
+    const perPage = 10;
+
+    const tbody = document.getElementById('catalog-body');
+    const pageInfo = document.getElementById('page-info');
+    const searchInput = document.getElementById('catalog-search');
+    const filters = document.querySelectorAll('.spec-table__filter');
+    const headers = document.querySelectorAll('.spec-table th[data-sort]');
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+
+    function getMaterialBadgeClass(material) {
+      if (material.includes('Stainless')) return 'spec-table__material-badge--stainless';
+      if (material.includes('Nylon')) return 'spec-table__material-badge--nylon';
+      return 'spec-table__material-badge--carbon';
+    }
+
+    function render() {
+      const start = currentPage * perPage;
+      const end = start + perPage;
+      const pageData = filteredProducts.slice(start, end);
+
+      tbody.innerHTML = pageData.map(p => `
+        <tr>
+          <td><div class="spec-table__product-cell"><span class="spec-table__product-name">${p.name}</span></div></td>
+          <td>${p.type}</td>
+          <td><span class="spec-table__capacity">${p.capacity} lbs</span></td>
+          <td><span class="spec-table__material-badge ${getMaterialBadgeClass(p.material)}">${p.material}</span></td>
+          <td>${p.housing}</td>
+          <td><a href="${p.link}" class="spec-table__action-btn">View Details</a></td>
+        </tr>
+      `).join('');
+
+      pageInfo.textContent = `Showing ${start + 1}-${Math.min(end, filteredProducts.length)} of ${filteredProducts.length} products`;
+      prevBtn.disabled = currentPage === 0;
+      nextBtn.disabled = end >= filteredProducts.length;
+    }
+
+    function applyFilters() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const activeFilter = document.querySelector('.spec-table__filter.active').dataset.filter;
+
+      filteredProducts = products.filter(p => {
+        const matchesSearch = p.name.toLowerCase().includes(searchTerm) || p.type.toLowerCase().includes(searchTerm);
+        const matchesFilter = activeFilter === 'all' || p.category === activeFilter;
+        return matchesSearch && matchesFilter;
+      });
+
+      if (sortColumn) {
+        filteredProducts.sort((a, b) => {
+          let aVal = a[sortColumn];
+          let bVal = b[sortColumn];
+          if (typeof aVal === 'string') aVal = aVal.toLowerCase();
+          if (typeof bVal === 'string') bVal = bVal.toLowerCase();
+          if (aVal < bVal) return sortDirection === 'asc' ? -1 : 1;
+          if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1;
+          return 0;
+        });
+      }
+
+      currentPage = 0;
+      render();
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filters.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilters();
+      });
+    });
+
+    headers.forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.dataset.sort;
+        if (sortColumn === col) {
+          sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortColumn = col;
+          sortDirection = 'asc';
+        }
+        headers.forEach(h => h.classList.remove('sorted', 'sorted-asc', 'sorted-desc'));
+        th.classList.add('sorted', sortDirection === 'asc' ? 'sorted-asc' : 'sorted-desc');
+        applyFilters();
+      });
+    });
+
+    prevBtn.addEventListener('click', () => { if (currentPage > 0) { currentPage--; render(); }});
+    nextBtn.addEventListener('click', () => { if ((currentPage + 1) * perPage < filteredProducts.length) { currentPage++; render(); }});
+
+    render();
+  </script>
+</body>
+</html>

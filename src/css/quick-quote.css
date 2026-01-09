@@ -1,0 +1,492 @@
+/* ============================================
+   Ball Transfer Systems - Quick Quote Sidebar
+   ============================================
+   Persistent quote builder across pages
+   ============================================ */
+
+/* ----------------------------------------
+   Quote Toggle Button (Fixed)
+   ---------------------------------------- */
+.quote-toggle {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  color: white;
+  border: none;
+  padding: var(--space-4) var(--space-3);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  cursor: pointer;
+  z-index: 998;
+  box-shadow:
+    -4px 0 20px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.quote-toggle:hover {
+  padding-right: var(--space-5);
+  box-shadow:
+    -8px 0 30px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.quote-toggle__icon {
+  width: 20px;
+  height: 20px;
+  transform: rotate(90deg);
+}
+
+.quote-toggle__count {
+  background: white;
+  color: var(--color-accent);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(90deg);
+}
+
+.quote-toggle__count:empty {
+  display: none;
+}
+
+/* ----------------------------------------
+   Quote Sidebar Panel
+   ---------------------------------------- */
+.quote-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  max-width: 100vw;
+  height: 100vh;
+  background: white;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-sidebar.open {
+  transform: translateX(0);
+}
+
+/* ----------------------------------------
+   Sidebar Backdrop
+   ---------------------------------------- */
+.quote-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.quote-backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ----------------------------------------
+   Sidebar Header
+   ---------------------------------------- */
+.quote-sidebar__header {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  padding: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quote-sidebar__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.quote-sidebar__title svg {
+  width: 24px;
+  height: 24px;
+}
+
+.quote-sidebar__close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.quote-sidebar__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.quote-sidebar__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ----------------------------------------
+   Sidebar Content
+   ---------------------------------------- */
+.quote-sidebar__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+}
+
+/* ----------------------------------------
+   Empty State
+   ---------------------------------------- */
+.quote-empty {
+  text-align: center;
+  padding: var(--space-12) var(--space-6);
+  color: var(--color-text-muted);
+}
+
+.quote-empty__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-4);
+  opacity: 0.3;
+}
+
+.quote-empty__title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.quote-empty__text {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-6);
+}
+
+/* ----------------------------------------
+   Quote Item
+   ---------------------------------------- */
+.quote-item {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  position: relative;
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.quote-item__image {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background: white;
+}
+
+.quote-item__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.quote-item__name {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quote-item__details {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.quote-item__quantity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.quote-item__qty-btn {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--color-border);
+  background: white;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.quote-item__qty-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.quote-item__qty-value {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+.quote-item__remove {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.quote-item__remove:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.quote-item__remove svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ----------------------------------------
+   Sidebar Footer
+   ---------------------------------------- */
+.quote-sidebar__footer {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-gray-50);
+}
+
+.quote-summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+.quote-summary__label {
+  color: var(--color-text-muted);
+}
+
+.quote-summary__value {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.quote-sidebar__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.quote-sidebar__submit {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.quote-sidebar__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232, 106, 0, 0.3);
+}
+
+.quote-sidebar__submit svg {
+  width: 18px;
+  height: 18px;
+}
+
+.quote-sidebar__clear {
+  width: 100%;
+  padding: var(--space-2) var(--space-4);
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quote-sidebar__clear:hover {
+  background: #fee2e2;
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+/* ----------------------------------------
+   Add to Quote Button (for product pages)
+   ---------------------------------------- */
+.btn--add-quote {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-gray-100);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn--add-quote:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+.btn--add-quote svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn--add-quote.added {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+/* ----------------------------------------
+   Notification Toast
+   ---------------------------------------- */
+.quote-toast {
+  position: fixed;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--color-primary);
+  color: white;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1002;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.quote-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.quote-toast svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ----------------------------------------
+   Mobile Adjustments
+   ---------------------------------------- */
+@media (max-width: 480px) {
+  .quote-sidebar {
+    width: 100vw;
+  }
+
+  .quote-toggle {
+    bottom: var(--space-4);
+    top: auto;
+    right: var(--space-4);
+    transform: none;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    border-radius: var(--radius-full);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .quote-toggle__icon {
+    transform: none;
+  }
+
+  .quote-toggle__count {
+    transform: none;
+  }
+}
+
+/* ----------------------------------------
+   Reduced Motion
+   ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .quote-sidebar,
+  .quote-backdrop,
+  .quote-toggle,
+  .quote-item,
+  .quote-toast {
+    transition: none;
+    animation: none;
+  }
+}

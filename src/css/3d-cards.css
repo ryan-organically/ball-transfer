@@ -1,0 +1,407 @@
+/* ============================================
+   Ball Transfer Systems - 3D Product Cards
+   ============================================
+   Perspective-based 3D transforms with
+   realistic lighting and depth effects
+   ============================================ */
+
+/* ----------------------------------------
+   3D Products Grid Container
+   ---------------------------------------- */
+.products-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-8);
+  perspective: 1500px;
+  perspective-origin: center center;
+}
+
+/* ----------------------------------------
+   3D Product Card Base
+   ---------------------------------------- */
+.product-card-3d {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-card-3d__inner {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.02),
+    0 4px 8px rgba(0, 0, 0, 0.02),
+    0 8px 16px rgba(0, 0, 0, 0.02),
+    0 16px 32px rgba(0, 0, 0, 0.04);
+}
+
+/* ----------------------------------------
+   3D Depth Shadow (moves with card)
+   ---------------------------------------- */
+.product-card-3d__shadow {
+  position: absolute;
+  inset: 10px;
+  background: rgba(19, 58, 99, 0.15);
+  border-radius: var(--radius-xl);
+  filter: blur(20px);
+  transform: translateZ(-50px) scale(0.9);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: -1;
+}
+
+/* ----------------------------------------
+   Card Image with 3D depth
+   ---------------------------------------- */
+.product-card-3d__image-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.product-card-3d__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Image shine effect */
+.product-card-3d__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.5) 45%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.5) 55%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+/* ----------------------------------------
+   Card Body with floating effect
+   ---------------------------------------- */
+.product-card-3d__body {
+  padding: var(--space-6);
+  background: white;
+  position: relative;
+  transform: translateZ(20px);
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-card-3d__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 var(--space-2) 0;
+  transition: color 0.3s ease;
+}
+
+.product-card-3d__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ----------------------------------------
+   Floating badge
+   ---------------------------------------- */
+.product-card-3d__badge {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  background: var(--color-accent);
+  color: white;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transform: translateZ(40px);
+  box-shadow: 0 4px 12px rgba(232, 106, 0, 0.4);
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ----------------------------------------
+   Quick action button (appears on hover)
+   ---------------------------------------- */
+.product-card-3d__action {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%) translateY(20px) translateZ(30px);
+  opacity: 0;
+  background: var(--color-primary);
+  color: white;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 12px rgba(19, 58, 99, 0.3);
+}
+
+/* ----------------------------------------
+   Border glow effect
+   ---------------------------------------- */
+.product-card-3d__glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius-xl) + 2px);
+  background: linear-gradient(
+    135deg,
+    rgba(232, 106, 0, 0.5),
+    rgba(19, 58, 99, 0.5),
+    rgba(232, 106, 0, 0.5)
+  );
+  background-size: 200% 200%;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+  animation: glowRotate 3s linear infinite paused;
+}
+
+@keyframes glowRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ----------------------------------------
+   Hover Effects
+   ---------------------------------------- */
+.product-card-3d:hover .product-card-3d__inner {
+  transform: translateY(-10px) rotateX(5deg);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.02),
+    0 8px 16px rgba(0, 0, 0, 0.02),
+    0 16px 32px rgba(0, 0, 0, 0.03),
+    0 32px 64px rgba(0, 0, 0, 0.05);
+}
+
+.product-card-3d:hover .product-card-3d__shadow {
+  transform: translateZ(-80px) translateY(20px) scale(0.85);
+  filter: blur(30px);
+  opacity: 0.8;
+}
+
+.product-card-3d:hover .product-card-3d__image {
+  transform: scale(1.1);
+}
+
+.product-card-3d:hover .product-card-3d__shine {
+  transform: translateX(100%);
+}
+
+.product-card-3d:hover .product-card-3d__body {
+  transform: translateZ(30px);
+}
+
+.product-card-3d:hover .product-card-3d__badge {
+  transform: translateZ(50px) scale(1.05);
+}
+
+.product-card-3d:hover .product-card-3d__action {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) translateZ(30px);
+}
+
+.product-card-3d:hover .product-card-3d__title {
+  color: var(--color-accent);
+}
+
+.product-card-3d:hover .product-card-3d__glow {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+/* ----------------------------------------
+   Interactive Tilt (JavaScript enhanced)
+   ---------------------------------------- */
+.product-card-3d[data-tilt] {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --tilt-scale: 1;
+}
+
+.product-card-3d[data-tilt] .product-card-3d__inner {
+  transform:
+    rotateX(var(--tilt-x))
+    rotateY(var(--tilt-y))
+    scale(var(--tilt-scale));
+}
+
+/* ----------------------------------------
+   Card variants
+   ---------------------------------------- */
+/* Featured card - larger and more prominent */
+.product-card-3d--featured {
+  grid-column: span 2;
+}
+
+.product-card-3d--featured .product-card-3d__image-wrap {
+  height: 300px;
+}
+
+/* Compact card for sidebars */
+.product-card-3d--compact .product-card-3d__image-wrap {
+  height: 150px;
+}
+
+.product-card-3d--compact .product-card-3d__body {
+  padding: var(--space-4);
+}
+
+/* ----------------------------------------
+   Loading state with shimmer
+   ---------------------------------------- */
+.product-card-3d--loading .product-card-3d__image-wrap,
+.product-card-3d--loading .product-card-3d__body {
+  background: linear-gradient(
+    90deg,
+    #f1f5f9 0%,
+    #e2e8f0 50%,
+    #f1f5f9 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerLoad 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmerLoad {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ----------------------------------------
+   Responsive adjustments
+   ---------------------------------------- */
+@media (max-width: 768px) {
+  .products-grid-3d {
+    perspective: 800px;
+    gap: var(--space-6);
+  }
+
+  .product-card-3d__image-wrap {
+    height: 180px;
+  }
+
+  .product-card-3d--featured {
+    grid-column: span 1;
+  }
+
+  .product-card-3d--featured .product-card-3d__image-wrap {
+    height: 200px;
+  }
+
+  /* Reduce 3D intensity on mobile */
+  .product-card-3d:hover .product-card-3d__inner {
+    transform: translateY(-5px);
+  }
+}
+
+/* ----------------------------------------
+   Reduced motion support
+   ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .product-card-3d,
+  .product-card-3d__inner,
+  .product-card-3d__shadow,
+  .product-card-3d__image,
+  .product-card-3d__body,
+  .product-card-3d__shine,
+  .product-card-3d__action,
+  .product-card-3d__glow {
+    transition: none;
+    animation: none;
+  }
+
+  .product-card-3d:hover .product-card-3d__inner {
+    transform: none;
+  }
+
+  .product-card-3d:hover .product-card-3d__shine {
+    transform: translateX(-100%);
+  }
+}
+
+/* ----------------------------------------
+   Flip Card Variant (shows specs on back)
+   ---------------------------------------- */
+.product-card-flip {
+  perspective: 1000px;
+  height: 320px;
+}
+
+.product-card-flip__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-card-flip:hover .product-card-flip__inner {
+  transform: rotateY(180deg);
+}
+
+.product-card-flip__front,
+.product-card-flip__back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-premium-md);
+}
+
+.product-card-flip__front {
+  background: white;
+}
+
+.product-card-flip__back {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
+}
+
+.product-card-flip__back h4 {
+  color: white;
+  margin-bottom: var(--space-4);
+}
+
+.product-card-flip__specs {
+  flex: 1;
+  font-size: var(--font-size-sm);
+}
+
+.product-card-flip__specs dt {
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: var(--space-1);
+}
+
+.product-card-flip__specs dd {
+  margin: 0 0 var(--space-3) 0;
+  opacity: 0.9;
+}
+
+.product-card-flip__back .btn {
+  margin-top: auto;
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compare ball transfer units side by side. Find the perfect unit for your application.">
+  <title>Product Comparison Tool | Ball Transfer Systems</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logos/favicon-32x32.png">
+  <style>
+    .compare-tool { padding: var(--space-12) 0; }
+    .compare-header { text-align: center; margin-bottom: var(--space-8); }
+    .compare-selectors { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); margin-bottom: var(--space-8); }
+    .selector-card { background: var(--color-gray-50); border-radius: var(--radius-lg); padding: var(--space-6); }
+    .selector-card h3 { margin-bottom: var(--space-4); color: var(--color-primary); }
+    .selector-card select { width: 100%; margin-bottom: var(--space-4); }
+    .product-preview { text-align: center; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .product-preview img { max-width: 200px; border-radius: var(--radius-md); margin-bottom: var(--space-4); }
+    .product-preview .no-selection { color: var(--color-text-muted); }
+    .compare-table { margin-top: var(--space-8); }
+    .compare-table table { width: 100%; }
+    .compare-table th { background: var(--color-primary); color: white; padding: var(--space-4); text-align: left; }
+    .compare-table td { padding: var(--space-4); border-bottom: 1px solid var(--color-border); }
+    .compare-table tr:nth-child(even) td { background: var(--color-gray-50); }
+    .compare-table .spec-label { font-weight: 600; width: 30%; }
+    .compare-table .highlight { background: rgba(232, 106, 0, 0.1) !important; }
+    .compare-table .better { color: var(--color-accent); font-weight: 600; }
+    .compare-actions { text-align: center; margin-top: var(--space-8); }
+    @media (max-width: 768px) { .compare-selectors { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-logo"><img src="assets/images/logos/ball-transfer-systems-logo.png" alt="Ball Transfer Systems, LLC" width="200"></a>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="main-nav">
+        <div class="nav-dropdown">
+          <span class="nav-link nav-dropdown__toggle">Products</span>
+          <div class="nav-dropdown__menu">
+            <a href="stud-mount-ball-transfer-units.html" class="nav-dropdown__link">Stud Mount</a>
+            <a href="flange-mount-ball-transfer-units.html" class="nav-dropdown__link">Flange Mount</a>
+            <a href="disk-mount-ball-transfer-units.html" class="nav-dropdown__link">Disk Mount</a>
+            <a href="round-mount-ball-transfer-units.html" class="nav-dropdown__link">Round Mount</a>
+            <a href="machined-stud-mount-ball-transfer-units.html" class="nav-dropdown__link">Machined Stud Mount</a>
+            <a href="machined-press-ball-transfer-units.html" class="nav-dropdown__link">Machined Press</a>
+            <a href="pipe-mount-ball-transfer-units.html" class="nav-dropdown__link">Pipe Mount</a>
+            <a href="countersunk-flange-mount-ball-transfer-units.html" class="nav-dropdown__link">Countersunk Flange</a>
+            <a href="spring-loaded-ball-transfer-units.html" class="nav-dropdown__link">Spring Loaded</a>
+            <a href="bolt-down-disk-mount-units.html" class="nav-dropdown__link">Bolt Down Disk Mount</a>
+            <a href="press-in-bolt-down-mount-units.html" class="nav-dropdown__link">Press In / Bolt Down</a>
+          </div>
+        </div>
+        <a href="compare.html" class="nav-link nav-link--active">Compare</a>
+        <a href="catalog.html" class="nav-link">Catalog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="request-a-quote.html" class="nav-link nav-link--cta">Request a Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header"><div class="container"><h1 class="page-header__title">Product Comparison Tool</h1></div></section>
+
+  <main id="main">
+    <section class="compare-tool">
+      <div class="container">
+        <div class="compare-header fade-in-up">
+          <p class="lead">Select two products to compare specifications side by side</p>
+        </div>
+
+        <div class="compare-selectors fade-in-up">
+          <div class="selector-card">
+            <h3>Product A</h3>
+            <select id="product-a" class="form-select">
+              <option value="">Select a product...</option>
+              <optgroup label="Stud Mount">
+                <option value="smc-14" data-img="stud-mount-1-1.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="75" data-stud="1/4-20" data-type="Medium Duty">SMC 1/4</option>
+                <option value="sms-14" data-img="stud-mount-1-1.jpg" data-ball="Stainless Steel" data-housing="Stainless Steel" data-load="125" data-stud="1/4-20" data-type="Medium Duty">SMS 1/4</option>
+                <option value="smc-112" data-img="stud-mount-1-1.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="250" data-stud="3/8-16" data-type="Heavy Duty">1-1/2 SMC</option>
+                <option value="sms-112" data-img="stud-mount-1-1.jpg" data-ball="Stainless Steel" data-housing="Stainless Steel" data-load="350" data-stud="3/8-16" data-type="Heavy Duty">1-1/2 SMS</option>
+              </optgroup>
+              <optgroup label="Flange Mount">
+                <option value="fmc" data-img="FMC-flange.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="75" data-stud="N/A" data-type="Flange">FMC</option>
+                <option value="fms" data-img="FMC-flange.jpg" data-ball="Stainless Steel" data-housing="Stainless Steel" data-load="125" data-stud="N/A" data-type="Flange">FMS</option>
+              </optgroup>
+              <optgroup label="Disk Mount">
+                <option value="dmc" data-img="DMC-disk-mount.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="75" data-stud="N/A" data-type="Disk">DMC</option>
+                <option value="dms" data-img="DMC-disk-mount.jpg" data-ball="Stainless Steel" data-housing="Stainless Steel" data-load="125" data-stud="N/A" data-type="Disk">DMS</option>
+              </optgroup>
+              <optgroup label="Spring Loaded">
+                <option value="slc" data-img="SLC-spring-load.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="50" data-stud="1/4-20" data-type="Spring Loaded">SLC</option>
+                <option value="fslc" data-img="FSLC-spring-load.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="50" data-stud="N/A" data-type="Spring Loaded Flange">FSLC</option>
+              </optgroup>
+            </select>
+            <div class="product-preview" id="preview-a">
+              <p class="no-selection">Select a product above</p>
+            </div>
+          </div>
+
+          <div class="selector-card">
+            <h3>Product B</h3>
+            <select id="product-b" class="form-select">
+              <option value="">Select a product...</option>
+              <optgroup label="Stud Mount">
+                <option value="smc-14" data-img="stud-mount-1-1.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="75" data-stud="1/4-20" data-type="Medium Duty">SMC 1/4</option>
+                <option value="sms-14" data-img="stud-mount-1-1.jpg" data-ball="Stainless Steel" data-housing="Stainless Steel" data-load="125" data-stud="1/4-20" data-type="Medium Duty">SMS 1/4</option>
+                <option value="smc-112" data-img="stud-mount-1-1.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="250" data-stud="3/8-16" data-type="Heavy Duty">1-1/2 SMC</option>
+                <option value="sms-112" data-img="stud-mount-1-1.jpg" data-ball="Stainless Steel" data-housing="Stainless Steel" data-load="350" data-stud="3/8-16" data-type="Heavy Duty">1-1/2 SMS</option>
+              </optgroup>
+              <optgroup label="Flange Mount">
+                <option value="fmc" data-img="FMC-flange.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="75" data-stud="N/A" data-type="Flange">FMC</option>
+                <option value="fms" data-img="FMC-flange.jpg" data-ball="Stainless Steel" data-housing="Stainless Steel" data-load="125" data-stud="N/A" data-type="Flange">FMS</option>
+              </optgroup>
+              <optgroup label="Disk Mount">
+                <option value="dmc" data-img="DMC-disk-mount.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="75" data-stud="N/A" data-type="Disk">DMC</option>
+                <option value="dms" data-img="DMC-disk-mount.jpg" data-ball="Stainless Steel" data-housing="Stainless Steel" data-load="125" data-stud="N/A" data-type="Disk">DMS</option>
+              </optgroup>
+              <optgroup label="Spring Loaded">
+                <option value="slc" data-img="SLC-spring-load.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="50" data-stud="1/4-20" data-type="Spring Loaded">SLC</option>
+                <option value="fslc" data-img="FSLC-spring-load.jpg" data-ball="Carbon Steel" data-housing="Carbon Steel (zinc)" data-load="50" data-stud="N/A" data-type="Spring Loaded Flange">FSLC</option>
+              </optgroup>
+            </select>
+            <div class="product-preview" id="preview-b">
+              <p class="no-selection">Select a product above</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="compare-table fade-in-up" id="compare-table" style="display: none;">
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Specification</th>
+                  <th id="header-a">Product A</th>
+                  <th id="header-b">Product B</th>
+                </tr>
+              </thead>
+              <tbody id="compare-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="compare-actions fade-in-up">
+          <a href="request-a-quote.html" class="btn btn--accent btn--lg">Request Quote for Selected Products</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/images/logos/ball-transfer-systems-logo.png" alt="Ball Transfer Systems" style="height: 50px; filter: brightness(0) invert(1);">
+          <p>A leader in heavy-duty and light application industrial ball transfer units.</p>
+          <div class="footer-contact"><strong>Ball Transfer Systems, LLC</strong><br>2965 Pittsburgh Road, Perryopolis, PA 15473<br><a href="tel:724-736-0600">724-736-0600</a></div>
+        </div>
+        <div class="footer-logos">
+          <a href="https://creativeindustrialsystems.com" target="_blank"><img src="assets/images/logos/creative-industrial-systems-logo.png" alt="Creative Industrial Systems, LLC"></a>
+          <a href="index.html"><img src="assets/images/logos/ball-transfer-logo.png" alt="Ball Transfer Systems, LLC"></a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>Copyright &copy; 2025 Ball Transfer Systems, LLC. All Rights Reserved.</p></div>
+    </div>
+  </footer>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <button class="back-to-top" aria-label="Back to top"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" /></svg></button>
+
+  <script src="js/main.js"></script>
+  <script>
+    const selectA = document.getElementById('product-a');
+    const selectB = document.getElementById('product-b');
+    const previewA = document.getElementById('preview-a');
+    const previewB = document.getElementById('preview-b');
+    const compareTable = document.getElementById('compare-table');
+    const compareBody = document.getElementById('compare-body');
+    const headerA = document.getElementById('header-a');
+    const headerB = document.getElementById('header-b');
+
+    function getProductData(select) {
+      const opt = select.options[select.selectedIndex];
+      if (!opt.value) return null;
+      return {
+        name: opt.text,
+        img: opt.dataset.img,
+        ball: opt.dataset.ball,
+        housing: opt.dataset.housing,
+        load: parseInt(opt.dataset.load),
+        stud: opt.dataset.stud,
+        type: opt.dataset.type
+      };
+    }
+
+    function updatePreview(select, previewEl) {
+      const data = getProductData(select);
+      if (data) {
+        previewEl.innerHTML = `<img src="assets/images/products/${data.img}" alt="${data.name}"><strong>${data.name}</strong><span style="color:var(--color-text-muted)">${data.type}</span>`;
+      } else {
+        previewEl.innerHTML = '<p class="no-selection">Select a product above</p>';
+      }
+      updateComparison();
+    }
+
+    function updateComparison() {
+      const a = getProductData(selectA);
+      const b = getProductData(selectB);
+      if (!a || !b) { compareTable.style.display = 'none'; return; }
+      compareTable.style.display = 'block';
+      headerA.textContent = a.name;
+      headerB.textContent = b.name;
+      const specs = [
+        { label: 'Type', a: a.type, b: b.type },
+        { label: 'Ball Material', a: a.ball, b: b.ball },
+        { label: 'Housing', a: a.housing, b: b.housing },
+        { label: 'Load Capacity', a: a.load + ' lbs', b: b.load + ' lbs', compare: true, aVal: a.load, bVal: b.load },
+        { label: 'Stud Size', a: a.stud, b: b.stud }
+      ];
+      compareBody.innerHTML = specs.map(s => {
+        let aClass = '', bClass = '';
+        if (s.compare) {
+          if (s.aVal > s.bVal) aClass = 'better';
+          else if (s.bVal > s.aVal) bClass = 'better';
+        }
+        const highlight = s.a !== s.b ? 'highlight' : '';
+        return `<tr><td class="spec-label">${s.label}</td><td class="${highlight} ${aClass}">${s.a}</td><td class="${highlight} ${bClass}">${s.b}</td></tr>`;
+      }).join('');
+    }
+
+    selectA.addEventListener('change', () => updatePreview(selectA, previewA));
+    selectB.addEventListener('change', () => updatePreview(selectB, previewB));
+  </script>
+</body>
+</html>

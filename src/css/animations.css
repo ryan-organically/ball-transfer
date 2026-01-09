@@ -1,0 +1,624 @@
+/* ============================================
+   Ball Transfer Systems - Award-Winning Animations
+   ============================================
+   Subtle, purposeful motion that delights
+   ============================================ */
+
+/* ----------------------------------------
+   CSS Custom Properties for Animation
+   ---------------------------------------- */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 800ms;
+}
+
+/* ----------------------------------------
+   Scroll-Triggered Fade In Animations
+   ---------------------------------------- */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration-slow) var(--ease-out-expo),
+              transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity var(--duration-slow) var(--ease-out-expo),
+              transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity var(--duration-slow) var(--ease-out-expo),
+              transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity var(--duration-slow) var(--ease-out-expo),
+              transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.fade-in-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-normal) var(--ease-out-expo),
+              transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.stagger-children.visible > *:nth-child(1) { transition-delay: 0ms; }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 75ms; }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 150ms; }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 225ms; }
+.stagger-children.visible > *:nth-child(5) { transition-delay: 300ms; }
+.stagger-children.visible > *:nth-child(6) { transition-delay: 375ms; }
+.stagger-children.visible > *:nth-child(7) { transition-delay: 450ms; }
+.stagger-children.visible > *:nth-child(8) { transition-delay: 525ms; }
+.stagger-children.visible > *:nth-child(9) { transition-delay: 600ms; }
+.stagger-children.visible > *:nth-child(10) { transition-delay: 675ms; }
+.stagger-children.visible > *:nth-child(11) { transition-delay: 750ms; }
+.stagger-children.visible > *:nth-child(12) { transition-delay: 825ms; }
+
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----------------------------------------
+   Enhanced Button Interactions
+   ---------------------------------------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-out-quart);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-slow) var(--ease-out-expo),
+              height var(--duration-slow) var(--ease-out-expo);
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Button hover lift effect */
+.btn--primary:hover,
+.btn--accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px rgba(19, 58, 99, 0.4);
+}
+
+.btn--accent:hover {
+  box-shadow: 0 10px 20px -10px rgba(232, 106, 0, 0.4);
+}
+
+/* ----------------------------------------
+   Enhanced Card Interactions
+   ---------------------------------------- */
+.product-card {
+  transition: transform var(--duration-normal) var(--ease-out-quart),
+              box-shadow var(--duration-normal) var(--ease-out-quart);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+}
+
+.product-card__image {
+  transition: transform var(--duration-slow) var(--ease-out-quart);
+}
+
+.product-card:hover .product-card__image {
+  transform: scale(1.05);
+}
+
+.product-card__body {
+  position: relative;
+}
+
+.product-card__body::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--color-accent);
+  transform: translateX(-50%);
+  transition: width var(--duration-normal) var(--ease-out-quart);
+}
+
+.product-card:hover .product-card__body::before {
+  width: 50%;
+}
+
+/* ----------------------------------------
+   Navigation Enhancements
+   ---------------------------------------- */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transform: translateX(-50%);
+  transition: width var(--duration-fast) var(--ease-out-quart);
+}
+
+.nav-link:hover::after,
+.nav-link--active::after {
+  width: 80%;
+}
+
+.nav-dropdown__menu {
+  transform-origin: top center;
+}
+
+.nav-dropdown__link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-dropdown__link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--color-accent);
+  transform: translateX(-100%);
+  transition: transform var(--duration-fast) var(--ease-out-quart);
+}
+
+.nav-dropdown__link:hover::before {
+  transform: translateX(0);
+}
+
+/* ----------------------------------------
+   Hero Section Enhancements
+   ---------------------------------------- */
+.hero__content {
+  animation: heroFadeIn 1s var(--ease-out-expo) forwards;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__overline {
+  animation: heroFadeIn 0.8s var(--ease-out-expo) 0.2s both;
+}
+
+.hero__title {
+  animation: heroFadeIn 0.8s var(--ease-out-expo) 0.4s both;
+}
+
+.hero__text {
+  animation: heroFadeIn 0.8s var(--ease-out-expo) 0.6s both;
+}
+
+.hero__actions {
+  animation: heroFadeIn 0.8s var(--ease-out-expo) 0.8s both;
+}
+
+/* Subtle hero background parallax feel */
+.hero__background img {
+  transition: transform 0.1s linear;
+}
+
+/* ----------------------------------------
+   Form Input Enhancements
+   ---------------------------------------- */
+.form-input,
+.form-select,
+.form-textarea {
+  transition: border-color var(--duration-fast) var(--ease-out-quart),
+              box-shadow var(--duration-fast) var(--ease-out-quart),
+              transform var(--duration-fast) var(--ease-out-quart);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -4px rgba(19, 58, 99, 0.15);
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-label {
+  transition: color var(--duration-fast) var(--ease-out-quart);
+}
+
+.form-group:focus-within .form-label {
+  color: var(--color-primary);
+}
+
+/* ----------------------------------------
+   Table Row Hover
+   ---------------------------------------- */
+.table tbody tr {
+  transition: background-color var(--duration-fast) var(--ease-out-quart),
+              transform var(--duration-fast) var(--ease-out-quart);
+}
+
+.table tbody tr:hover {
+  background-color: rgba(19, 58, 99, 0.05) !important;
+}
+
+/* ----------------------------------------
+   Feature Card Enhancements
+   ---------------------------------------- */
+.feature-card {
+  transition: transform var(--duration-normal) var(--ease-out-quart);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+}
+
+.feature-card__icon {
+  transition: transform var(--duration-normal) var(--ease-spring),
+              background-color var(--duration-normal) var(--ease-out-quart);
+}
+
+.feature-card:hover .feature-card__icon {
+  transform: scale(1.1) rotate(5deg);
+  background-color: rgba(19, 58, 99, 0.1);
+}
+
+/* ----------------------------------------
+   Content Section Image Hover
+   ---------------------------------------- */
+.content-row__image {
+  overflow: hidden;
+}
+
+.content-row__image img {
+  transition: transform var(--duration-slow) var(--ease-out-quart);
+}
+
+.content-row__image:hover img {
+  transform: scale(1.03);
+}
+
+/* ----------------------------------------
+   Footer Link Underlines
+   ---------------------------------------- */
+.footer-contact a {
+  position: relative;
+  display: inline-block;
+}
+
+.footer-contact a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--duration-fast) var(--ease-out-quart);
+}
+
+.footer-contact a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ----------------------------------------
+   Social Icon Bounce
+   ---------------------------------------- */
+.footer-social a {
+  transition: transform var(--duration-normal) var(--ease-spring),
+              background-color var(--duration-normal) var(--ease-out-quart);
+}
+
+.footer-social a:hover {
+  transform: translateY(-4px) scale(1.1);
+}
+
+/* ----------------------------------------
+   Page Header Text Reveal
+   ---------------------------------------- */
+.page-header__title {
+  animation: titleReveal 0.8s var(--ease-out-expo) forwards;
+}
+
+@keyframes titleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    letter-spacing: 0.1em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: normal;
+  }
+}
+
+/* ----------------------------------------
+   Callout Box Glow
+   ---------------------------------------- */
+.callout {
+  position: relative;
+  transition: transform var(--duration-normal) var(--ease-out-quart),
+              box-shadow var(--duration-normal) var(--ease-out-quart);
+}
+
+.callout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -20px rgba(19, 58, 99, 0.3);
+}
+
+/* ----------------------------------------
+   CTA Banner Pulse
+   ---------------------------------------- */
+.cta-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  animation: ctaPulse 4s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(25%, 25%);
+    opacity: 1;
+  }
+}
+
+/* ----------------------------------------
+   Loading Skeleton
+   ---------------------------------------- */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-200) 0%,
+    var(--color-gray-100) 50%,
+    var(--color-gray-200) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ----------------------------------------
+   Smooth Scroll Behavior
+   ---------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ----------------------------------------
+   Focus Visible Styles (Accessibility)
+   ---------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Remove default focus for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ----------------------------------------
+   Image Lazy Load Fade In
+   ---------------------------------------- */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-out-quart);
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"]:not([src=""]) {
+  opacity: 1;
+}
+
+/* ----------------------------------------
+   Mobile Menu Slide Animation
+   ---------------------------------------- */
+@media (max-width: 1024px) {
+  .main-nav {
+    transition: transform var(--duration-slow) var(--ease-out-expo),
+                opacity var(--duration-slow) var(--ease-out-expo);
+  }
+
+  .main-nav:not(.active) {
+    opacity: 0;
+  }
+
+  .main-nav.active {
+    opacity: 1;
+  }
+
+  .main-nav.active .nav-link,
+  .main-nav.active .nav-dropdown {
+    animation: mobileNavItem 0.4s var(--ease-out-expo) both;
+  }
+
+  .main-nav.active .nav-link:nth-child(1),
+  .main-nav.active .nav-dropdown:nth-child(1) { animation-delay: 0.1s; }
+  .main-nav.active .nav-link:nth-child(2),
+  .main-nav.active .nav-dropdown:nth-child(2) { animation-delay: 0.15s; }
+  .main-nav.active .nav-link:nth-child(3) { animation-delay: 0.2s; }
+  .main-nav.active .nav-link:nth-child(4) { animation-delay: 0.25s; }
+  .main-nav.active .nav-link:nth-child(5) { animation-delay: 0.3s; }
+  .main-nav.active .nav-link:nth-child(6) { animation-delay: 0.35s; }
+}
+
+@keyframes mobileNavItem {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ----------------------------------------
+   Scroll Progress Indicator
+   ---------------------------------------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ----------------------------------------
+   Back to Top Button
+   ---------------------------------------- */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--duration-normal) var(--ease-out-quart);
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(19, 58, 99, 0.3);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(232, 106, 0, 0.4);
+}
+
+.back-to-top svg {
+  width: 24px;
+  height: 24px;
+}
