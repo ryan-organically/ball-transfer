@@ -182,68 +182,8 @@
 }
 
 /* ----------------------------------------
-   Hover Effects
+   Hover Effects (disabled)
    ---------------------------------------- */
-.product-card-3d:hover .product-card-3d__inner {
-  transform: translateY(-10px) rotateX(5deg);
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.02),
-    0 8px 16px rgba(0, 0, 0, 0.02),
-    0 16px 32px rgba(0, 0, 0, 0.03),
-    0 32px 64px rgba(0, 0, 0, 0.05);
-}
-
-.product-card-3d:hover .product-card-3d__shadow {
-  transform: translateZ(-80px) translateY(20px) scale(0.85);
-  filter: blur(30px);
-  opacity: 0.8;
-}
-
-.product-card-3d:hover .product-card-3d__image {
-  transform: scale(1.1);
-}
-
-.product-card-3d:hover .product-card-3d__shine {
-  transform: translateX(100%);
-}
-
-.product-card-3d:hover .product-card-3d__body {
-  transform: translateZ(30px);
-}
-
-.product-card-3d:hover .product-card-3d__badge {
-  transform: translateZ(50px) scale(1.05);
-}
-
-.product-card-3d:hover .product-card-3d__action {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0) translateZ(30px);
-}
-
-.product-card-3d:hover .product-card-3d__title {
-  color: var(--color-accent);
-}
-
-.product-card-3d:hover .product-card-3d__glow {
-  opacity: 1;
-  animation-play-state: running;
-}
-
-/* ----------------------------------------
-   Interactive Tilt (JavaScript enhanced)
-   ---------------------------------------- */
-.product-card-3d[data-tilt] {
-  --tilt-x: 0deg;
-  --tilt-y: 0deg;
-  --tilt-scale: 1;
-}
-
-.product-card-3d[data-tilt] .product-card-3d__inner {
-  transform:
-    rotateX(var(--tilt-x))
-    rotateY(var(--tilt-y))
-    scale(var(--tilt-scale));
-}
 
 /* ----------------------------------------
    Card variants
@@ -307,10 +247,6 @@
     height: 200px;
   }
 
-  /* Reduce 3D intensity on mobile */
-  .product-card-3d:hover .product-card-3d__inner {
-    transform: translateY(-5px);
-  }
 }
 
 /* ----------------------------------------
@@ -329,13 +265,6 @@
     animation: none;
   }
 
-  .product-card-3d:hover .product-card-3d__inner {
-    transform: none;
-  }
-
-  .product-card-3d:hover .product-card-3d__shine {
-    transform: translateX(-100%);
-  }
 }
 
 /* ----------------------------------------

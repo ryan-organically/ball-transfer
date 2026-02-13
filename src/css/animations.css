@@ -148,87 +148,7 @@
               box-shadow var(--duration-normal) var(--ease-out-quart);
 }
 
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
-}
 
-.product-card__image {
-  transition: transform var(--duration-slow) var(--ease-out-quart);
-}
-
-.product-card:hover .product-card__image {
-  transform: scale(1.05);
-}
-
-.product-card__body {
-  position: relative;
-}
-
-.product-card__body::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 3px;
-  background: var(--color-accent);
-  transform: translateX(-50%);
-  transition: width var(--duration-normal) var(--ease-out-quart);
-}
-
-.product-card:hover .product-card__body::before {
-  width: 50%;
-}
-
-/* ----------------------------------------
-   Navigation Enhancements
-   ---------------------------------------- */
-.nav-link {
-  position: relative;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--color-accent);
-  transform: translateX(-50%);
-  transition: width var(--duration-fast) var(--ease-out-quart);
-}
-
-.nav-link:hover::after,
-.nav-link--active::after {
-  width: 80%;
-}
-
-.nav-dropdown__menu {
-  transform-origin: top center;
-}
-
-.nav-dropdown__link {
-  position: relative;
-  overflow: hidden;
-}
-
-.nav-dropdown__link::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 3px;
-  height: 100%;
-  background: var(--color-accent);
-  transform: translateX(-100%);
-  transition: transform var(--duration-fast) var(--ease-out-quart);
-}
-
-.nav-dropdown__link:hover::before {
-  transform: translateX(0);
-}
 
 /* ----------------------------------------
    Hero Section Enhancements
@@ -318,34 +238,6 @@
   transition: transform var(--duration-normal) var(--ease-out-quart);
 }
 
-.feature-card:hover {
-  transform: translateY(-4px);
-}
-
-.feature-card__icon {
-  transition: transform var(--duration-normal) var(--ease-spring),
-              background-color var(--duration-normal) var(--ease-out-quart);
-}
-
-.feature-card:hover .feature-card__icon {
-  transform: scale(1.1) rotate(5deg);
-  background-color: rgba(19, 58, 99, 0.1);
-}
-
-/* ----------------------------------------
-   Content Section Image Hover
-   ---------------------------------------- */
-.content-row__image {
-  overflow: hidden;
-}
-
-.content-row__image img {
-  transition: transform var(--duration-slow) var(--ease-out-quart);
-}
-
-.content-row__image:hover img {
-  transform: scale(1.03);
-}
 
 /* ----------------------------------------
    Footer Link Underlines

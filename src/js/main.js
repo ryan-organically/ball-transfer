@@ -359,6 +359,19 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ============================================
+  // Hero Background Slider
+  // ============================================
+  const heroSlides = document.querySelectorAll('.hero-slider__slide');
+  if (heroSlides.length > 1) {
+    let currentSlide = 0;
+    setInterval(function() {
+      heroSlides[currentSlide].classList.remove('hero-slider__slide--active');
+      currentSlide = (currentSlide + 1) % heroSlides.length;
+      heroSlides[currentSlide].classList.add('hero-slider__slide--active');
+    }, 5000);
+  }
+
+  // ============================================
   // Initialize
   // ============================================
   updateScrollProgress();

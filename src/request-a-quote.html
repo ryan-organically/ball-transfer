@@ -140,7 +140,7 @@
           <a href="index.html"><img src="assets/images/logos/ball-transfer-logo.png" alt="Ball Transfer Systems, LLC"></a>
         </div>
       </div>
-      <div class="footer-bottom"><p>Copyright &copy; 2025 Ball Transfer Systems, LLC. All Rights Reserved. | <a href="return-policy.html" style="color: inherit; text-decoration: underline;">Return Policy</a></p></div>
+      <div class="footer-bottom"><p>Copyright &copy; 2026 Ball Transfer Systems, LLC. All Rights Reserved. | <a href="return-policy.html" style="color: inherit; text-decoration: underline;">Return Policy</a></p></div>
     </div>
   </footer>
 
@@ -168,58 +168,8 @@
           if (window.innerWidth <= 1024) { e.preventDefault(); d.classList.toggle('active'); }
         });
       });
-
-      // Form validation
-      const form = document.getElementById('quote-form');
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          let isValid = true;
-          const requiredFields = ['name', 'job-title', 'company', 'phone', 'email', 'product', 'timeline'];
-
-          // Clear previous errors
-          document.querySelectorAll('.form-error').forEach(el => el.remove());
-          document.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(el => el.style.borderColor = '');
-
-          requiredFields.forEach(fieldId => {
-            const field = document.getElementById(fieldId);
-            if (field && !field.value.trim()) {
-              showError(field, 'This field is required');
-              isValid = false;
-            }
-          });
-
-          // Validate email format
-          const email = document.getElementById('email');
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (email.value.trim() && !emailRegex.test(email.value)) {
-            showError(email, 'Please enter a valid email address');
-            isValid = false;
-          }
-
-          // Validate phone format (basic)
-          const phone = document.getElementById('phone');
-          if (phone.value.trim() && phone.value.replace(/\D/g, '').length < 10) {
-            showError(phone, 'Please enter a valid phone number');
-            isValid = false;
-          }
-
-          if (isValid) {
-            alert('Thank you for your quote request! A Ball Transfer Systems representative will contact you shortly.');
-            form.reset();
-          }
-        });
-      }
-
-      function showError(input, message) {
-        input.style.borderColor = '#dc2626';
-        const error = document.createElement('div');
-        error.className = 'form-error';
-        error.style.cssText = 'color: #dc2626; font-size: 0.875rem; margin-top: 0.25rem;';
-        error.textContent = message;
-        input.parentNode.appendChild(error);
-      }
     });
   </script>
+  <script src="js/form-handler.js"></script>
 </body>
 </html>

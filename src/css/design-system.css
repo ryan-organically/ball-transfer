@@ -173,6 +173,7 @@ body {
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
   color: var(--color-text);
+  overflow-x: clip;
   background-color: var(--color-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -423,9 +424,6 @@ p:last-child {
   transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
 
-.card:hover {
-  box-shadow: var(--shadow-lg);
-}
 
 .card--bordered {
   border: var(--border-width) solid var(--color-border);
@@ -464,10 +462,6 @@ p:last-child {
   transition: all var(--transition-base);
 }
 
-.product-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
-}
 
 .product-card__image {
   width: 100%;

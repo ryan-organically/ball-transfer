@@ -85,15 +85,7 @@ body::before {
 }
 
 .hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 150px;
-  background: linear-gradient(to top, var(--color-white), transparent);
-  pointer-events: none;
-  z-index: 1;
+  display: none;
 }
 
 /* Cursor-following glow */
@@ -129,10 +121,6 @@ body::before {
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.3);
 }
 
-.hero__overline {
-  background: linear-gradient(135deg, rgba(232, 106, 0, 0.2), rgba(232, 106, 0, 0.1));
-  border: 1px solid rgba(232, 106, 0, 0.3);
-}
 
 /* ----------------------------------------
    Premium Buttons
@@ -172,10 +160,6 @@ body::before {
   border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-.product-card:hover {
-  box-shadow: var(--shadow-premium-lg);
-  border-color: rgba(19, 58, 99, 0.1);
-}
 
 .product-card__image {
   position: relative;
@@ -195,10 +179,6 @@ body::before {
   border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.feature-card:hover {
-  box-shadow: var(--shadow-premium-md);
-  border-color: rgba(19, 58, 99, 0.08);
-}
 
 .feature-card__icon {
   background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-gray-100) 100%);

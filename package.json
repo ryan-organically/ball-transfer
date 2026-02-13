@@ -1,0 +1,9 @@
+{
+  "name": "ball-transfer-redesign",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ball Transfer Systems website",
+  "dependencies": {
+    "resend": "^2.1.0"
+  }
+}
